@@ -34,6 +34,7 @@ const AddActivity: React.FC = () => {
     //el tipo de dato que se haya creado
     const titleInput = useRef<HTMLIonInputElement>(null);
     const descriptionInput = useRef<HTMLIonInputElement>(null);
+    const historiaInput = useRef<HTMLIonInputElement>(null);
     const activityTypeInput = useRef<HTMLIonSegmentElement>(null);
     //
     //crearemos una metodo para sacar el valor de dicho elemento
@@ -41,10 +42,11 @@ const AddActivity: React.FC = () => {
         //Extrae los datos de los input
         const title = titleInput.current?.value as string;
         const description = descriptionInput.current?.value as string;
+        const historia = historiaInput.current?.value as string;
         const activityType = activityTypeInput.current?.value as ActivityType;
 
         if (title && description && activityType) {
-            activitiesCtxt.addActivity(title, description, activityType);
+            activitiesCtxt.addActivity(title,historia, description, activityType);
             setToastMsg('The activity has been saved!');
             //reemplazar nuestra navegacion actual hacia la ... 
             history.replace('/all-activities');
@@ -62,7 +64,7 @@ const AddActivity: React.FC = () => {
                         <IonButtons slot='start'>
                             <IonMenuButton />
                         </IonButtons>
-                        <IonTitle>Add activity</IonTitle>
+                        <IonTitle>Yapay Kiti</IonTitle>
                     </IonToolbar>
                 </IonHeader>
                 <IonContent>
@@ -70,14 +72,14 @@ const AddActivity: React.FC = () => {
                         <IonRow>
                             <IonCol className='ion-text-center'>
                                 <IonSegment ref={activityTypeInput}>
-                                    <IonSegmentButton value='work'>
-                                        <IonLabel>Work</IonLabel>
+                                    <IonSegmentButton value='islas'>
+                                        <IonLabel>Wat'a</IonLabel>
                                     </IonSegmentButton>
-                                    <IonSegmentButton value='rest'>
-                                        <IonLabel>Rest</IonLabel>
+                                    <IonSegmentButton value='city'>
+                                        <IonLabel>Jatun llaqta Puno</IonLabel>
                                     </IonSegmentButton>
-                                    <IonSegmentButton value='hobby'>
-                                        <IonLabel>Hobby</IonLabel>
+                                    <IonSegmentButton value='distritos'>
+                                        <IonLabel>Distritos</IonLabel>
                                     </IonSegmentButton>
                                 </IonSegment>
                             </IonCol>
@@ -86,7 +88,7 @@ const AddActivity: React.FC = () => {
                             <IonCol>
                                 <IonItem>
                                     <IonLabel position='floating'>
-                                        Activity title
+                                        Titulo del Lugar
                                     </IonLabel>
                                     <IonInput ref={titleInput} type='text'></IonInput>
                                 </IonItem>
@@ -96,9 +98,19 @@ const AddActivity: React.FC = () => {
                             <IonCol>
                                 <IonItem>
                                     <IonLabel position='floating'>
-                                        Activity description
+                                        Descripcion del Lugar
                                     </IonLabel>
                                     <IonInput ref={descriptionInput} type='text'></IonInput>
+                                </IonItem>
+                            </IonCol>
+                        </IonRow>
+                        <IonRow>
+                            <IonCol>
+                                <IonItem>
+                                    <IonLabel position='floating'>
+                                        Comentarios
+                                    </IonLabel>
+                                    <IonInput ref={historiaInput} type='text'></IonInput>
                                 </IonItem>
                             </IonCol>
                         </IonRow>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch, BrowserRouter } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, IonMenu, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonIcon, IonLabel, IonMenuToggle } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -23,9 +23,11 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import AllActivities from './pages/AllActivities/AllActivities';
 import AddActivity from './pages/AddActivity/AddActivity';
-import { bodyOutline, newspaperOutline } from 'ionicons/icons';
+import {business, compass, location, add} from 'ionicons/icons';
 import ActivitiesContextProvider from './data/ActivitiesContextProvider';
-
+import Islas from './pages/Islas/Islas';
+import CuidadPuno from './pages/Cuidad/CuidadPuno';
+import Deustua from './pages/Lugares/Deustua';
 const App: React.FC = () => (
     <IonApp>
         <IonReactRouter>
@@ -39,14 +41,26 @@ const App: React.FC = () => (
                     <IonList>
                         <IonMenuToggle>
                             <IonItem routerLink="/all-activities" routerDirection="none" lines="none">
-                                <IonIcon color="medium" slot="start" icon={bodyOutline}/>
-                                <IonLabel>All activities</IonLabel>
+                                <IonIcon color="medium" slot="start" icon={location}/>
+                                <IonLabel>Tukuy Kiti Puno</IonLabel>
                             </IonItem>
                         </IonMenuToggle>
                         <IonMenuToggle>
-                            <IonItem routerLink="/add-activity" routerDirection="none" lines="none">
-                                <IonIcon color="medium" slot="start" icon={newspaperOutline}/>
-                                <IonLabel>Add activity</IonLabel>
+                            <IonItem routerLink="/islas" routerDirection="none" lines="none">
+                                <IonIcon color="medium" slot="start" icon={compass}/>
+                                <IonLabel>Wat'a</IonLabel>
+                            </IonItem>
+                        </IonMenuToggle>
+                        <IonMenuToggle>
+                            <IonItem routerLink="/cuidad" routerDirection="none" lines="none">
+                                <IonIcon color="medium" slot="start" icon={business}/>
+                                <IonLabel>Jatun llaqta</IonLabel>
+                            </IonItem>
+                        </IonMenuToggle>
+                        <IonMenuToggle>
+                            <IonItem routerLink="/agregar-lugar" routerDirection="none" lines="none">
+                                <IonIcon color="medium" slot="start" icon={add}/>
+                                <IonLabel>Yapay Kiti</IonLabel>
                             </IonItem>
                         </IonMenuToggle>
                     </IonList>
@@ -54,13 +68,20 @@ const App: React.FC = () => (
             </IonMenu>
             <ActivitiesContextProvider>
                 <IonRouterOutlet id="scheduleAppM1">
-                    <Route path='/all-activities' component={AllActivities} exact />
-                    <Route path='/add-activity' component={AddActivity} exact />
-                    <Redirect to='/all-activities' />
+                    {/* <BrowserRouter> */}
+                        {/* <Switch> */}
+                            <Route path='/all-activities' component={AllActivities} exact />
+                            <Route path='/islas' component={Islas} exact />
+                            <Route path='/cuidad' component={CuidadPuno} exact />
+                            <Route path='/agregar-lugar' component={AddActivity} exact />
+                            {/* <Route path='/arco-deustua' component={Deustua} exact /> */}
+                            <Redirect to='/all-activities' />
+
+                        {/* </Switch> */}
+                    {/* </BrowserRouter> */}
                 </IonRouterOutlet>
             </ActivitiesContextProvider>
         </IonReactRouter>
     </IonApp>
 );
-
 export default App;

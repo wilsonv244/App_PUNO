@@ -1,10 +1,11 @@
 import React from 'react';
 
-export type ActivityType = 'rest' | 'work' | 'hobby';
+export type ActivityType = 'islas' | 'city' | 'distritos';
 
 export interface Activity {
     id: string;
     title: string;
+    historia: string;
     description: string;
     hour: string;
     activityType: ActivityType;
@@ -13,8 +14,10 @@ export interface Activity {
 }
 
 export interface ActivitiesContextModel {
+
     activities: Activity[];
-    addActivity: (title: string, description: string, activityType: ActivityType) => void;
+    
+    addActivity: (title: string,historia: string, description: string, activityType: ActivityType) => void;
     completeActivity: (activityId: string) => void;
 }
 //todos los metodos funcionanando
